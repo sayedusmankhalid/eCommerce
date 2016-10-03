@@ -14,9 +14,10 @@ CREATE TABLE users (
   state varchar(50) NOT NULL,
   country varchar(50) NOT NULL,
   zip varchar(15) NOT NULL,
+  email varchar(100)NOT NULL,
   
   PRIMARY KEY (username)
 );
 
-INSERT INTO users (username,password,firstName,lastName,Address,city, state,country,zip) values
-('usman',crypt('usman',gen_salt('bf')),'Usman','Khalid','8 Woodland Ter','Fredericksburg','VA','USA','22401');
+INSERT INTO users (username,password,firstName,lastName,Address,city, state,country,zip, email) values
+('usman',crypt('usman',gen_salt('bf')),'Usman','Khalid','8 Woodland Ter','Fredericksburg','VA','USA','22401','test@gmail.com');

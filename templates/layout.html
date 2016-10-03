@@ -1,102 +1,241 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" ng-app="Commerce">
+
 <head>
+  <title>Bootstrap Case</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
   <title>{{title}}</title>
   <meta name="description" content="free website template" />
   <meta name="keywords" content="enter your keywords here" />
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=9" />
+
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/style.css" />
   <script type="text/javascript" src="js/jquery.min.js"></script>
   <script type="text/javascript" src="js/image_slide.js"></script>
-  
+
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.4/socket.io.js"></script>
   <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
   <script src="js/controller.js"></script>
-  <link rel="stylesheet" href="css/loginStyle.css">
+  <link rel="stylesheet" href="css/1styles.css">
   <link href='http://fonts.googleapis.com/css?family=Ubuntu:500' rel='stylesheet' type='text/css'>
 
 
 
-  
+
 </head>
 
 <body ng-controller="MainPageController">
   <div id="main">
+    <!--------------------------------------------------------------------------
     <div id="header">
-	  <div id="banner">
-	    <div id="welcome">
-	      <h1 style=color:white >{{title}}</h1>
-	    </div><!--close welcome-->
-	    <div id="menubar">
+      <div id="banner">
+        <div id="welcome">
+          <h1 style=color:white>{{title}}</h1>
+        </div>
+        <div id="menubar">
           <ul id="menu">
-            <li
-            {%if current =="home"  %}
-            class="current"
-            {% endif %}
-            ><a href="/">Home</a></li>
-            <li
-             {%if current =="ourWork"  %}
-            class="current"
-            {% endif %}
-            ><a href="/Login">Login</a></li>
-            <li
-             {%if current =="testimonials"  %}
-            class="current"
-            {% endif %}
-            ><a href="/testimonials">Testimonials</a></li>
-            <li {%if current =="projects"  %}
-            class="current"
-            {% endif %}
-            ><a href="/projects">Projects</a></li>
-            <li {%if current =="contact"  %}
-            class="current"
-            {% endif %}
-            ><a href="/contact">Contact Us</a></li>
+            <li {%if current=="home" %} class="current" {% endif %}><a href="/">Home</a></li>
+            <li {%if current=="ourWork" %} class="current" {% endif %}><a href="/Login">Login</a></li>
+            <li {%if current=="testimonials" %} class="current" {% endif %}><a href="/testimonials">Testimonials</a></li>
+            <li {%if current=="projects" %} class="current" {% endif %}><a href="/projects">Projects</a></li>
+            <li {%if current=="contact" %} class="current" {% endif %}><a href="/contact">Contact Us</a></li>
           </ul>
-        </div><!--close menubar-->	  
-	  </div><!--close banner-->	
-    </div><!--close header-->	
-    
-	<div id="site_content">		
+        </div>
+      </div>
+    </div>
+    ------------------------------------------------------------------------------------------------>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">4ALL</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/">Home</a></li>
+          <li><a href="\Login">Login</a></li>
+          <li><a href="#">Page 2</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#" data-toggle="modal" data-target="#login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          <li><a href="#" data-toggle="modal" data-target="#register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 
-   	
-	{%block content %}{% endblock %}
-	
-	</div><!--close site_content--> 
-    
-	<div id="content_cream">
-	  <div class="content_cream_container_box">
-		<h4>Latest Blog Post</h4>
-		<div class="readmore">
-		  <a href="/blogpost">Read more</a>
-		</div><!--close readmore-->
-	  </div><!--close content_cream_container_box-->
+
+        </ul>
+      </div>
+    </nav>
+    <!----------------------Model for the login forum----------------------------------------------------------->
+    <!-- Modal -->
+    <div class="modal fade" id="login" role="dialog">
+      <div class="modal-dialog modal-sm">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Login</h4>
+          </div>
+          <div class="modal-body">
+            <section>
+              <center>
+                <h1 id="styled-title">Sign In</h1>
+                <form ng-submit="login()">
+
+                  <table class="styled-input">
+                    <tr>
+                      <td>Username: </td>
+                      <td> <input ng-model="username" type="text" /></td>
+                    </tr>
+                    <tr>
+                      <td>Password: </td>
+                      <td> <input ng-model="password" type="password" /></td>
+                    </tr>
+
+                  </table>
+
+                  <section class="styled-button">
+                    <button type="submit">Login</button>
+                    <div class="invalid">
+                      <p id="message"></p>
+                    </div>
+                  </section>
+                </form>
+              </center>
+              </seciton>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!--------------------------------------------------Model for registration-------------------------------->
+    <div class="modal fade" id="register" role="dialog">
+      <div class="modal-dialog modal-md">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Register Account</h4>
+          </div>
+          <div class="modal-body">
+            <center>
+    <h1 id="styled-title">Edit Account</h1>
+    <form ng-submit="register()">
+        <table class="styled-input">
+              <tr> 
+                <td>User Name: </td> <td> <input ng-model="userName" type="text"></td>
+              </tr>
+              <tr> 
+                <td>First Name: </td> <td> <input ng-model="firstName" type="text"></td>
+              </tr>
+              <tr> 
+                <td>Last Name: </td> <td> <input ng-model="lastName" type="text" ></td>
+              </tr>
+               <tr> 
+                <td>Password: </td> <td> <input ng-model="regPassword" type="password" ></td>
+              </tr>
+              <tr>
+                <td>Address: </td> <td> <input ng-model="address" type="text"/></td>
+              </tr>
+              <tr>
+                <td>City: </td> <td> <input ng-model="city" type="text"/></td>
+              </tr>
+
+              <tr>
+                <td>State: </td> <td> <input ng-model="state" type="text"/></td>
+              </tr>
+              <tr>
+                <td>Zip: </td> <td> <input ng-model="zip" size=5 maxlength=5 type="text"/></td>
+              </tr>
+              <tr>
+                <td>Country: </td> <td> <input ng-model="country" type="password"/></td>
+              </tr>
+               <tr>
+                <td>Email: </td> <td> <input ng-model="email" type="password"/></td>
+              </tr>
+        </table>
+
+        <section class="styled-button">
+            <button type="submit">Save</button>
+            &nbsp;
+            <a href="/"><button type="button">Cancel</button></a>
+            <div class="invalid"><p id="message"></p></div>
+        </section>
+
+    </form>
+  </center>
+</section>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-------------------------------------------------------model close--------------------------------------->
+
+
+
+    <div id="site_content">
+
+
+      {%block content %}{% endblock %}
+
+    </div>
+    <!--close site_content-->
+
+    <div id="content_cream">
       <div class="content_cream_container_box">
-       <h4>Latest News</h4>
-	    <p> </p>
-	    <div class="readmore">
-		  <a href="/videos">Watch</a>
-		</div><!--close readmore-->
-	  </div><!--close content_cream_container_box-->
+        <h4>Latest Blog Post</h4>
+        <div class="readmore">
+          <a href="/blogpost">Read more</a>
+        </div>
+        <!--close readmore-->
+      </div>
+      <!--close content_cream_container_box-->
+      <div class="content_cream_container_box">
+        <h4>Latest News</h4>
+        <p> </p>
+        <div class="readmore">
+          <a href="/videos">Watch</a>
+        </div>
+        <!--close readmore-->
+      </div>
+      <!--close content_cream_container_box-->
       <div class="content_cream_container_boxl">
-		<h4>Contact Us</h4>
-	    <p> </p>
-	    <div class="readmore">
-		  <a href="/contact">Read more</a>
-		</div><!--close readmore-->	  
-	  </div><!--close content_cream_container_box1-->      
-	  <br style="clear:both"/>
-    </div><!--close content_cream-->
-  </div><!--close main-->
+        <h4>Contact Us</h4>
+        <p> </p>
+        <div class="readmore">
+          <a href="/contact">Read more</a>
+        </div>
+        <!--close readmore-->
+      </div>
+      <!--close content_cream_container_box1-->
+      <br style="clear:both" />
+    </div>
+    <!--close content_cream-->
+  </div>
+  <!--close main-->
 
   <div id="footer_container">
     <div id="footer">
-	  <a href="http://validator.w3.org/check?uri=referer">Valid XHTML</a> | <a href="http://fotogrph.com/">Images</a> | Heart Internet <a href="http://www.heartinternet.co.uk/web-hosting/">web hosting</a> | website template by <a href="http://www.araynordesign.co.uk">ARaynorDesign</a>
-    </div><!--close footer-->  
-  </div><!--close footer_container-->  
-  
+      <a href="http://validator.w3.org/check?uri=referer">Valid XHTML</a> | <a href="http://fotogrph.com/">Images</a> | Heart Internet <a href="http://www.heartinternet.co.uk/web-hosting/">web hosting</a> | website template by <a href="http://www.araynordesign.co.uk">ARaynorDesign</a>
+    </div>
+    <!--close footer-->
+  </div>
+  <!--close footer_container-->
+
 </body>
+
 </html>

@@ -1,0 +1,470 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    margin-top: 0;
+    margin-right: 0;
+    margin-left: 0;
+    margin-bottom: 100px;
+    background-color: #FAF4EC;
+}
+
+
+/********************** 
+ * Header bar styles *
+ **********************/
+#selected a{
+    color: white;
+}
+
+.header{
+    background-color: #241109;
+}
+
+.header h1{
+    margin: 0;
+    padding: 0;
+    padding-top: 20px;
+    padding-bottom: 5px;
+    margin-bottom: -5px;
+    text-align: center;
+    font-family: 'Avenir';
+    font-weight: 100;
+    font-size: 3.6em;
+}
+
+.header a{
+    text-decoration: none;
+    color: #C0B897;
+}
+
+
+.nav-bar{
+    margin-right: auto;
+    margin-left: auto;
+    float: center;
+    left:        50%;        /* Start with top left in the center */
+    top:         10%;
+    width:       390px;      /* The fixed width... */
+    height:      50px;      /* ...and height */
+    /*margin-left: 20px; */    /* Shift over half the width */
+    /*margin-top:  20px; */     /* Shift up half the height */
+/*    width: 30%;
+    padding: 3px;
+    padding-left: 55px;*/
+}
+
+
+.nav-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Futura';
+    font-size: 0.7em;
+}
+
+.nav-bar a{
+    color: #7A5D39;
+    padding: 10px 10px;
+    padding-bottom: 15px;
+    text-decoration: none;
+    float: left;
+    -o-transition: .2s;
+    -ms-transition: .2s;
+    -moz-transition: .2s;
+    -webkit-transition: .2s;
+    transition: .2s;
+}
+
+.nav-bar a:hover {
+    color: white;
+}
+/*** End header bar styles ***/
+
+
+.border-item {
+    border-left: 1px solid #7A5D39;
+    padding-left: 20px;
+}
+
+.page-content {
+    overflow:auto;
+    padding-bottom: 70px;
+}
+
+.page-title h1 {
+    font-family: 'Futura';
+    color: #402A0B;
+    margin-bottom: 30px;
+    font-size: 4.5em;
+}
+
+.block-title{
+    
+}
+
+.content-block {
+    position: relative;
+    float: left;
+    font-family: 'Avenir';
+    width: 30%;
+    height: 458px;
+    margin-top: 0px;
+    margin-left: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+}
+
+.content-block img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content-block p {
+    font-size: 1.3em;
+}
+
+.content-header {
+    position: relative;
+    font-family: 'Avenir';
+    width: 30%;
+    height: 20px;
+    margin-top: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 0;
+    padding-right: 10px;
+}
+
+.content-header ul h2 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Futura';
+    font-size: 1.7em;
+
+    float : left;
+    background-color : #241109;
+    color: white;
+
+    -o-transition: .5s;
+    -ms-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
+    transition: .5s;
+
+}
+
+.content-header li h2:hover {
+    background-color: white;
+    color: black;
+}
+
+
+/**************************** 
+ * Button and input styles *
+ ****************************/
+.styled-input input[type="text"] {
+    display: block;
+    margin: 0;
+    width 100%;
+    font-family: sans-serif;
+    font-size: 17px;
+    appearance: none;
+    border-radius: none;
+    border: none;
+
+    background-color: #faf4ec;
+
+    padding: 2px 10px 1px;
+    box-shadow: none;
+
+    border-bottom: solid 2px black;
+    transition: border 0.3s;
+}
+
+.styled-input td {
+    font-family: 'Avenir';
+    font-size: 1.1em;
+    padding: 0 10px 7px 0;
+    text-align: right;
+
+}
+
+.styled-input input[type="text"]:focus {
+    outline: none;
+    border-bottom: solid 2px orange;
+}
+
+.styled-input input[type="password"] {
+    display: block;
+    margin: 0;
+    width 100%;
+    font-family: sans-serif;
+    font-size: 17px;
+    appearance: none;
+    box-shadow: none;
+    border-radius: none;
+
+    background-color: #faf4ec;
+
+    padding: 2px 10px 1px;
+    border: none;
+    border-bottom: solid 2px black;
+    transition: border 0.3s;
+
+}
+
+.styled-input input[type="password"]:focus {
+    outline: none;
+    border-bottom: solid 2px orange;
+}
+
+.styled-button button[type="submit"], button[type="button"], .styled-button button {
+    display: inline-block;
+    margin: 20px 0 0 0;
+    padding: 0px 20px;
+    font-size: 20px;
+    font-family: 'Avenir';
+    line-height: 1.8;
+    appearance: none;
+    box-shadow: none;
+    border-radius: 0;
+
+    color: #241109;
+    background: #faf4ec;
+    border: solid 3px #241109;
+
+    transition: background .3s;
+    transition: color .4s;
+}
+
+.styled-button button#learn {
+    padding: 0px 20px;
+    margin-bottom: 20px;
+}
+
+.styled-button button[type=submit]:hover, button[type="button"]:hover, .styled-button button#learn:hover  {
+    outline: none;
+    color: #c8b69d;
+    background: #241109;
+}
+
+.styled-button button[type=submit]:active, button[type="button"]:active{
+    outline: none;
+}
+
+.styled-button button#learn:active{
+    outline: none;
+    color: #c8b69d;
+    background: #241109;
+}
+
+/************** 
+ * home page *
+ **************/
+.home-banner {
+    position: relative;
+}
+
+.coffee-image img{
+    height: auto; 
+    width: 100%;
+}
+
+.banner-title h1 {
+    font-family: 'Futura';
+    color: #F7E6CE;
+}
+
+.banner-title {
+    position: absolute;
+    right: 1px;
+    margin-top: 130px;
+    margin-right: 40px;
+    width: 320px;
+}
+
+/**************
+ * Learn Page *
+ **************/
+.learn-content div button {
+    display: inline-block;
+    margin: 20px 0 0 0;
+    padding: 0px 20px;
+    font-size: 20px;
+
+    font-family: 'Avenir', 'black' ;
+    line-height: 1.8;
+    appearance: none;
+    box-shadow: none;
+    border-radius: 0;
+
+    color: #241109;
+    background: #faf4ec;
+    border-top: solid 2px #241109;
+    border-bottom: solid 2px #241109;
+    border-right: none;
+    border-left: none;
+
+    border: none;
+
+    outline: none;
+
+    transition: color .4s;
+}
+
+.learn-content div button:hover {
+    color: #e67300;
+}
+
+.learn-content div section#aero, div section#french,
+div section#moka, div section#chemex{
+    position: relative;
+    float: left;
+    font-family: 'Avenir';
+    width: 30%;
+    height: 458px;
+    margin-top: 0px;
+    margin-left: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+}
+
+.learn-content div section#beans, div section#roasts {
+    position: relative;
+    float: left;
+    font-family: 'Avenir';
+    width: 45%;
+    height: 458px;
+    margin-top: 0px;
+    margin-left: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+}
+
+.learn-content div section table {
+    font-family: 'Avenir';
+    padding: 5px 10px 5px;
+    color: black;
+    text-align: center;
+}
+
+.learn-content div section table th {
+
+    font-family: 'Avenir';
+    padding: 5px 10px 5px;
+    background: #241109;
+    color: #c8b69d;
+}
+
+.learn-content div section table td{
+    font-size: 15px;
+    border-bottom: 1px solid #ddd;
+    padding: 0px 10px 0px;
+}
+
+/************** 
+ * Browse Page *
+ **************/
+.styled-table table tr th {
+    font-family: 'Avenir';
+    padding: 5px 10px 5px;
+    background: #241109;
+    color: #c8b69d;
+}
+
+.styled-table table tr td {
+    text-align: center;
+    font-family: 'Avenir';
+    padding: 5px 10px 5px;
+    color: black;
+    border-bottom: 1px solid #ddd;
+}
+
+.param-title {
+    font-family: 'Avenir';
+}
+
+
+/************** 
+ * Login Page *
+ **************/
+#styled-title {
+    font-family: 'Avenir';
+    font-size: 2.7em;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+#to-register {
+    font-family: 'Avenir';
+    font-size: 1.0em;
+}
+
+#to-register a {
+    text-decoration: none;
+    color: #ff9933;
+    transition: color .2s;
+}
+
+#to-register a:hover {
+    color: #e67300;
+
+}
+
+.invalid {
+    font-family: "Avenir";
+    color: red;
+}
+
+/**************** 
+ * Account Page *
+ ****************/
+.account #styled-title{
+    margin-bottom: 10px;
+}
+
+.account .styled-table table tr th{
+    width: 440px;
+    font-size: 1.3em;
+}
+
+/******************** 
+ * Find Friend Page *
+ ********************/
+ .styled-table table tr td button{
+    display: block;
+    margin: auto;
+    font-size: 1em;
+ }
+
+
+/******************
+ * Footer styles *
+ ******************/
+footer{
+   position: relative;
+   margin-top: 40px;
+   height: 70px;
+   clear:both;
+   background-color: #C8B69D;
+}
+
+footer .nav-bar a{
+    padding-top: 30px;
+    color: #241109;
+}
+
+footer .border-item{
+    border-left: 1px solid #241109;
+}
+
+

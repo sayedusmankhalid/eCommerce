@@ -9,6 +9,7 @@ body
 { font: normal 80% Arial, Helvetica, sans-serif;
   color: #FFF;
   background: transparent url(../images/background.jpg) repeat;  
+  font-size: large;
 }
 
 p
@@ -423,3 +424,13 @@ ul img {
   color: #FFF;
   text-shadow: 1px 1px #000;}
  
+.modal-title {
+  color: black;
+}
+.modal-body{
+  color:black;
+}
+
+.modal-body h1{
+  color:black;
+}
