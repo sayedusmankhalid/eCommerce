@@ -12,12 +12,12 @@ CREATE TABLE users (
   address varchar(100) NOT NULL,
   city varchar(100) NOT NULL,
   state varchar(50) NOT NULL,
-  country varchar(50) NOT NULL,
   zip varchar(15) NOT NULL,
+  country varchar(50) NOT NULL,
   email varchar(100)NOT NULL,
   
   PRIMARY KEY (username)
 );
 
-INSERT INTO users (username,password,firstName,lastName,Address,city, state,country,zip, email) values
-('usman',crypt('usman',gen_salt('bf')),'Usman','Khalid','8 Woodland Ter','Fredericksburg','VA','USA','22401','test@gmail.com');
+INSERT INTO users (username,password,firstName,lastName,Address,city, state,zip,country,email) values
+('usman',crypt('usman',gen_salt('bf')),'Usman','Khalid','8 Woodland Ter','Fredericksburg','VA','22401','USA','test@gmail.com');

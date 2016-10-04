@@ -8,7 +8,7 @@ Socketpart2.controller('MainPageController', function($scope) {
         socket.on('connect', function() {
                 console.log('connected to the controller')
         });
-
+        //////////////////login////////////////////////////////////////////////
         $scope.login = function login() {
                 console.log('enter');
                 var user = $scope.username;
@@ -18,10 +18,23 @@ Socketpart2.controller('MainPageController', function($scope) {
         };
 
         socket.on('redirect', function(destination) {
+               //var model = document.getElementById('login');
+                
                 window.location.href = destination;
         });
         
          socket.on('loginFailed', function(msg) {
 		document.getElementById('message').textContent = msg;
+        });
+        ////////////////////registration///////////////////////////////////////
+        $scope.register = function register(){
+        console.log('inside the register controller');
+          socket.emit('register',$scope.userName, $scope.firstName, $scope.lastName,
+                        $scope.regPassword,$scope.conPassword, $scope.address, $scope.city,
+                        $scope.state, $scope.zip, $scope.country, $scope.email);      
+        };
+        
+        socket.on('regFail', function(msg) {
+		document.getElementById('regMessage').textContent = msg;
         });
 });

@@ -18,7 +18,7 @@ title = "Usman IT Services"
 
 def db_connect():
     print 'connection to the db_connect'
-    connectionString='dbname=skt2 user=usman password=usman host=localhost'
+    connectionString='dbname=ecom user=usman password=usman host=localhost'
     try:
         print 'are we trying'
         return psycopg2.connect(connectionString)
@@ -78,6 +78,37 @@ def login(username, password):
         emit('redirect',"/", namespace='/eCom')
         print 'how many times we are coming in else of loginPageValidation---------------------------------'
             #return render_template('index.html')
+    
+@socketio.on('register', namespace='/eCom')
+def register(username, firstName, lastName, password, conPassword, address, city,state, zip, country, email):
+    print (username, firstName, password, address, city, state, zip, country, email)
+    conn = db_connect()
+    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    
+    # Check if username already exists
+    query = "SELECT username FROM users WHERE username = %s"
+    cur.execute(query, [username])
+    userCheck = cur.fetchall()
+    if len(userCheck) > 0:
+        print('user name is already taken')
+        emit('regFail', 'Username already taken!')
+    else:
+        if password != conPassword:
+            emit('regFail', 'Passwords do not match!')
+        else:
+            try:
+                queryInsert = "INSERT INTO users(username,password,firstName,lastName,address,city,state,zip,country,email) values (%s,crypt(%s,gen_salt('bf')), %s, %s, %s, %s, %s, %s, %s ,%s);"
+                cur.execute(queryInsert,[username, password, firstName, lastName, address, city, state, zip, country, email])
+                #print (test)
+            except:
+                print("ERROR inserting into users")
+                print("""INSERT INTO users(username, password, firstName, lastName, address, city, state, zip, country, email)VALUES 
+                (%s, crypt(%s, gen_salt('bf')), %s, %s, %s, %s, %s, %s, %s ,%s);""",
+                (username, password, firstName, lastName, address, city, state, zip, country, email) )
+                conn.rollback()
+            conn.commit()
+            emit('redirect',"/", namespace='/eCom')
+
     
 # start the server
 if __name__ == '__main__':
