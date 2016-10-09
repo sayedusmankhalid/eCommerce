@@ -2,6 +2,7 @@ import psycopg2
 import psycopg2.extras
 import os
 import uuid
+import db
 from flask import Flask, session
 from flask import Flask,render_template,request
 from flask.ext.socketio import SocketIO,emit
@@ -16,6 +17,7 @@ app.config['SECRET_KEY'] = 'secret!'
 socketio=SocketIO(app)
 title = "Usman IT Services"
 
+loginRequired = True
 def db_connect():
     print 'connection to the db_connect'
     connectionString='dbname=ecom user=usman password=usman host=localhost'
@@ -27,11 +29,8 @@ def db_connect():
 
 @app.route('/')
 def mainIndex():
-    
-    packages = {'platinum': '100', 'silver': '300', 'gold':'600'}
-    isDiscount = False
-    color = {'red', 'orange','green','blue'}
-    return render_template('index.html', current='home',title=title, deal=packages, isDiscount=isDiscount, colors=color)
+    print(session['loginRequired'])
+    return render_template('index.html', current='home', loginRequired= session['loginRequired'])
 
 @app.route('/Login')
 def ourWork():
@@ -63,32 +62,23 @@ def videos():
 ##########################################SocketIO STUFF ###########################################
 @socketio.on('login', namespace='/eCom')
 def login(username, password):
-    print username 
-    print password
-    conn=db_connect()
-    cur =conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    # print(cur.mogrify("select * from users where username=%s and password=%s;",(username11,password11)))
-    cur.execute("select * from users where username=%s and password=crypt(%s, password);",(username,password))
-    loginQueryFetch=cur.fetchone()
-    
+
+    loginQueryFetch = db.login(username, password)
     if loginQueryFetch is None:
         emit('loginFailed','Invalid Username', namespace='/eCom')
         print 'how many times we are coming in if of loginPageValidation---------------------------------'
     else:
+        session['username'] = username
+        session['loginRequired'] = False
+        print(session['loginRequired'])
         emit('redirect',"/", namespace='/eCom')
         print 'how many times we are coming in else of loginPageValidation---------------------------------'
             #return render_template('index.html')
     
 @socketio.on('register', namespace='/eCom')
 def register(username, firstName, lastName, password, conPassword, address, city,state, zip, country, email):
-    print (username, firstName, password, address, city, state, zip, country, email)
-    conn = db_connect()
-    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     
-    # Check if username already exists
-    query = "SELECT username FROM users WHERE username = %s"
-    cur.execute(query, [username])
-    userCheck = cur.fetchall()
+    userCheck = db.checkUserNameExist(username)
     if len(userCheck) > 0:
         print('user name is already taken')
         emit('regFail', 'Username already taken!')
@@ -96,17 +86,7 @@ def register(username, firstName, lastName, password, conPassword, address, city
         if password != conPassword:
             emit('regFail', 'Passwords do not match!')
         else:
-            try:
-                queryInsert = "INSERT INTO users(username,password,firstName,lastName,address,city,state,zip,country,email) values (%s,crypt(%s,gen_salt('bf')), %s, %s, %s, %s, %s, %s, %s ,%s);"
-                cur.execute(queryInsert,[username, password, firstName, lastName, address, city, state, zip, country, email])
-                #print (test)
-            except:
-                print("ERROR inserting into users")
-                print("""INSERT INTO users(username, password, firstName, lastName, address, city, state, zip, country, email)VALUES 
-                (%s, crypt(%s, gen_salt('bf')), %s, %s, %s, %s, %s, %s, %s ,%s);""",
-                (username, password, firstName, lastName, address, city, state, zip, country, email) )
-                conn.rollback()
-            conn.commit()
+            db.registerIntoDb(username, firstName, lastName, password, conPassword, address, city,state, zip, country, email)
             emit('redirect',"/", namespace='/eCom')
 
     

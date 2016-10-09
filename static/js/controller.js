@@ -10,16 +10,14 @@ Socketpart2.controller('MainPageController', function($scope) {
         });
         //////////////////login////////////////////////////////////////////////
         $scope.login = function login() {
-                console.log('enter');
                 var user = $scope.username;
                 var password = $scope.password;
-                console.log('inside the login controller')
                 socket.emit('login', user, password);
         };
 
         socket.on('redirect', function(destination) {
                //var model = document.getElementById('login');
-                
+                var loginLink = document.getElementById('loginLink');
                 window.location.href = destination;
         });
         
