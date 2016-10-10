@@ -18,14 +18,6 @@ socketio=SocketIO(app)
 title = "Usman IT Services"
 
 loginRequired = True
-def db_connect():
-    print 'connection to the db_connect'
-    connectionString='dbname=ecom user=usman password=usman host=localhost'
-    try:
-        print 'are we trying'
-        return psycopg2.connect(connectionString)
-    except:
-        print 'cannot connect to the database'
 
 @app.route('/')
 def mainIndex():
@@ -53,18 +45,12 @@ def contact():
 @app.route('/blogpost')
 def blogPost():
     return render_template("blogpost.html",current='contact', title=title)
-    
-@app.route('/videos')
-def videos():
-    video = [{'title': 'Young Consumers', 'vidLink': 'lSxrAo2lHYQ', 'desc': 'The Rise of India Young Consumers'},
-    {'title': 'Mercedes Benz', 'vidLink': 'bzxiM8oxI8I', 'desc': 'Mercedes Benz Service Close to your Heart Commercial'}];
 
-    return render_template('videos.html', title=title, v=video)
     
 ##########################################SocketIO STUFF ###########################################
+###################Login################
 @socketio.on('login', namespace='/eCom')
 def login(username, password):
-
     loginQueryFetch = db.login(username, password)
     if loginQueryFetch is None:
         emit('loginFailed','Invalid Username', namespace='/eCom')
@@ -76,7 +62,8 @@ def login(username, password):
         emit('redirect',"/", namespace='/eCom')
         print 'how many times we are coming in else of loginPageValidation---------------------------------'
             #return render_template('index.html')
-    
+
+################register#################    
 @socketio.on('register', namespace='/eCom')
 def register(username, firstName, lastName, password, conPassword, address, city,state, zip, country, email):
     
