@@ -1,0 +1,27 @@
+{% extends "layout.html" %} {% block content %}
+
+<p> Products For Sale
+  <p>
+
+    <seciton>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Catagories</th>
+            <th> </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for product in productList %}
+          <tr>
+            <td>{{product.name}}</td>
+            <td><img src="images/{{product.image}}" class="img-circle" alt="Cinque Terre" width="200" height="150"></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      </section>
+
+      {% endblock %}
