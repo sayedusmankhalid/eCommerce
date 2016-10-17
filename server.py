@@ -24,11 +24,11 @@ def mainIndex():
     print(session['loginRequired'])
     return render_template('index.html', current='home', loginRequired= session['loginRequired'])
 
-@app.route('/products')
+@app.route('/catagory')
 def ourWork():
     productList= [{'name':'Electronics', 'description':'Best iphone ever created','image':'home_1.jpg'},
                     {'name':'Furniture', 'description':'Best iphone ever created','image':'home_1.jpg'}]
-    return render_template('products.html', current='ourWork', productList = productList)
+    return render_template('catagory.html', current='ourWork', productList = productList)
 
 @app.route('/testimonials')
 def testimonials():
@@ -42,10 +42,17 @@ def projects():
 def contact():
     return render_template("contact.html",current='contact', title=title)
 
-@app.route('/blogpost')
-def blogPost():
-    return render_template("blogpost.html",current='contact', title=title)
-
+@app.route('/electronics')
+def electronics():
+    queryFetch = db.productsList('electronics')
+    print queryFetch
+    return render_template("product.html", queryFetch=queryFetch)
+    
+@app.route('/furniture')
+def furniture():
+    queryFetch = db.productsList('furniture')
+    print queryFetch
+    return render_template("product.html", queryFetch=queryFetch)
     
 ##########################################SocketIO STUFF ###########################################
 ###################Login################

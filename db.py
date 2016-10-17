@@ -43,3 +43,15 @@ def checkUserNameExist(username):
     cur.execute(query, [username])
     userCheck = cur.fetchall()
     return userCheck
+    
+    
+##########################populate cart#############################
+def productsList(catagory):
+    conn=db_connect()
+    cur =conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    
+    # Check if username already exists
+    query = "SELECT * FROM products WHERE catagory_name = %s"
+    cur.execute(query,[catagory])
+    userCheck = cur.fetchall()
+    return userCheck

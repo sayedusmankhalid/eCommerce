@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<!--Shopping Cart table-->
+<div class="table-responsive">
+    <table class="table product-table">
+        <!--Table head-->
+        <thead>
+            <tr>
+                <th></th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>QTY</th>
+                <th>Date Posted</th>
+                <th>Seller Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <!--/Table head-->
+
+        <!--Table body-->
+        <tbody>
+                
+            <!--First row-->
+            {% for p in queryFetch %}
+            <tr>
+                <th scope="row">
+                    <img src="http://mdbootstrap.com/images/ecommerce/products/shoes.jpg" alt="" class="img-fluid">
+                </th>
+                <td>
+                    <h5><strong>{{p.name}}</strong></h5>
+                    <p class="text-muted">{{p.description}}</p>
+                </td>
+                <td>${{p.price}}</td>
+                <td>{{p.quantity}}</td>
+                <td>{{p.date_posted}}</td>
+                <td>{{p.seller_name}}</td>
+
+            </tr>
+            {% endfor %}
+            <!--/First row-->
+
+
+        </tbody>
+        <!--/Table body-->
+    </table>
+</div>
+<!--/Shopping Cart table-->
+
+
+{% endblock %}

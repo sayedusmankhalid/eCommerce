@@ -27,6 +27,7 @@ CREATE TABLE products (
   image text,
   date_posted date NOT NULL,
   seller_name text NOT NULL,
+  catagory_name text NOT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY (seller_name) REFERENCES users(username)
 );
@@ -42,3 +43,8 @@ CREATE TABLE cart (
 
 INSERT INTO users (username,password,firstName,lastName,Address,city, state,zip,country,email) values
 ('usman',crypt('usman',gen_salt('bf')),'Usman','Khalid','8 Woodland Ter','Fredericksburg','VA','22401','USA','test@gmail.com');
+
+insert into products(name, description, price, quantity, date_posted, seller_name, catagory_name)values('iphone','best iphone ever',110,3,'2016-01-13','usman','electronics');
+
+--select users.username, products.name, products.description from users join products on products.seller_name ='usman';--
+--select products.name from cart join products on cart.product_id = products.id; --
