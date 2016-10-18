@@ -17,11 +17,23 @@ app.config['SECRET_KEY'] = 'secret!'
 socketio=SocketIO(app)
 title = "Usman IT Services"
 
-loginRequired = True
+passed = False
+name = ''
 
 @app.route('/')
 def mainIndex():
-    print(session['loginRequired'])
+    global name
+    global passed
+    if passed:
+        session['username'] = name
+        name = ''
+        passed = False
+    
+    session['loginRequired'] = True
+    if 'username' in session:
+        session['loginRequired'] = False
+
+        
     return render_template('index.html', current='home', loginRequired= session['loginRequired'])
 
 @app.route('/catagory')
@@ -58,13 +70,17 @@ def furniture():
 ###################Login################
 @socketio.on('login', namespace='/eCom')
 def login(username, password):
+    global passed
+    global name
     loginQueryFetch = db.login(username, password)
     if loginQueryFetch is None:
         emit('loginFailed','Invalid Username', namespace='/eCom')
         print 'how many times we are coming in if of loginPageValidation---------------------------------'
     else:
-        session['username'] = username
-        session['loginRequired'] = False
+        #session['username'] = username
+        #session['loginRequired'] = False
+        passed = True
+        name = username
         print(session['loginRequired'])
         emit('redirect',"/", namespace='/eCom')
         print 'how many times we are coming in else of loginPageValidation---------------------------------'

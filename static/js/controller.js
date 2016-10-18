@@ -22,7 +22,10 @@ Socketpart2.controller('MainPageController', function($scope) {
         });
         
          socket.on('loginFailed', function(msg) {
-		document.getElementById('message').textContent = msg;
+		//document.getElementById('message').textContent = msg;
+		$('#message').text(msg);
+
+
         });
         ////////////////////registration///////////////////////////////////////
         $scope.register = function register(){
@@ -34,5 +37,6 @@ Socketpart2.controller('MainPageController', function($scope) {
         
         socket.on('regFail', function(msg) {
 		document.getElementById('regMessage').textContent = msg;
+		$('#regMessage').text(msg);
         });
 });
