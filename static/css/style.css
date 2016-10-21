@@ -426,11 +426,21 @@ ul img {
  
 .modal-title {
   color: black;
+  
 }
 .modal-body{
   color:black;
+  font-family: 'Bree Serif', serif;
 }
 
 .modal-body h1{
   color:black;
+  font-family: 'Bree Serif', serif;
+}
+
+.modal-content{
+  background-color: silver;
+}
+.modal-body{
+  background-color: slategrey;
 }
