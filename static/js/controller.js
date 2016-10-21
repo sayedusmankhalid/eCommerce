@@ -18,7 +18,13 @@ Socketpart2.controller('MainPageController', function($scope) {
         socket.on('redirect', function(destination) {
                //var model = document.getElementById('login');
                 var loginLink = document.getElementById('loginLink');
-                window.location.href = destination;
+                window.location.href = destination.link;
+                //console.log(destination.name)
+                //$('#loginText').text(destination.name);
+        });
+        
+        socket.on('loginText', function(name) {
+           console.log(name); 
         });
         
          socket.on('loginFailed', function(msg) {

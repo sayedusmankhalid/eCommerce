@@ -24,6 +24,7 @@ name = ''
 def mainIndex():
     global name
     global passed
+    un = ""
     if passed:
         session['username'] = name
         name = ''
@@ -31,21 +32,24 @@ def mainIndex():
     
     session['loginRequired'] = True
     if 'username' in session:
+        un = session['username']
         session['loginRequired'] = False
-    return render_template('index.html', current='home', loginRequired= session['loginRequired'])
+    return render_template('index.html', current='home', loginRequired= session['loginRequired'], name = un)
 
 @app.route('/category')
 def ourWork():
     global name
     global passed
+    un=""
     if passed:
         session['username'] = name
         name = ''
         passed = False
     session['loginRequired'] = True
     if 'username' in session:
+        un = session['username']
         session['loginRequired'] = False
-    return render_template('category.html', current='category', loginRequired= session['loginRequired'])
+    return render_template('category.html', current='category', loginRequired= session['loginRequired'], name = un)
 
 @app.route('/testimonials')
 def testimonials():
@@ -87,7 +91,9 @@ def login(username, password):
         passed = True
         name = username
         print(session['loginRequired'])
-        emit('redirect',"/", namespace='/eCom')
+        
+        emit('redirect',{'link':'/', 'name':name}, namespace='/eCom')
+        #emit('loginText', name)
         print 'how many times we are coming in else of loginPageValidation---------------------------------'
             #return render_template('index.html')
 
