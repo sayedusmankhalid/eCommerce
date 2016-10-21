@@ -58,9 +58,9 @@
         <div class="navbar-header">
           <a class="navbar-brand" href="/">4ALL</a>
         </div>
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="/">Home</a></li>
-          <li><a href="\catagory">Catagories</a></li>
+        <ul class="nav navbar-nav" id="menu">
+          <li {%if current=="home" %} class="current" {% endif %}><a href="/">Home</a></li>
+          <li {%if current=="category" %} class="current" {% endif %}><a href="\category">Categories</a></li>
           <li><a href="#">Post Product</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -132,54 +132,66 @@
           </div>
           <div class="modal-body">
             <center>
-    <h1 id="styled-title">Edit Account</h1>
-    <form ng-submit="register()">
-        <table class="styled-input">
-              <tr> 
-                <td>User Name: </td> <td> <input ng-model="userName" type="text" required = true></td>
-              </tr>
-              <tr> 
-                <td>First Name: </td> <td> <input ng-model="firstName" type="text" required = true></td>
-              </tr>
-              <tr> 
-                <td>Last Name: </td> <td> <input ng-model="lastName" type="text" required = true ></td>
-              </tr>
-               <tr> 
-                <td>Password: </td> <td> <input ng-model="regPassword" type="password" required = true></td>
-              </tr>
-               <tr> 
-                <td>Confirm Password: </td> <td> <input ng-model="conPassword" type="password" required = true ></td>
-              </tr>
-              <tr>
-                <td>Address: </td> <td> <input ng-model="address" type="text" required = true ></td>
-              </tr>
-              <tr>
-                <td>City: </td> <td> <input ng-model="city" type="text" required = true></td>
-              </tr>
+              <h1 id="styled-title">Edit Account</h1>
+              <form ng-submit="register()">
+                <table class="styled-input">
+                  <tr>
+                    <td>User Name: </td>
+                    <td> <input ng-model="userName" type="text" required=t rue></td>
+                  </tr>
+                  <tr>
+                    <td>First Name: </td>
+                    <td> <input ng-model="firstName" type="text" required=t rue></td>
+                  </tr>
+                  <tr>
+                    <td>Last Name: </td>
+                    <td> <input ng-model="lastName" type="text" required=t rue></td>
+                  </tr>
+                  <tr>
+                    <td>Password: </td>
+                    <td> <input ng-model="regPassword" type="password" required=t rue></td>
+                  </tr>
+                  <tr>
+                    <td>Confirm Password: </td>
+                    <td> <input ng-model="conPassword" type="password" required=t rue></td>
+                  </tr>
+                  <tr>
+                    <td>Address: </td>
+                    <td> <input ng-model="address" type="text" required=t rue></td>
+                  </tr>
+                  <tr>
+                    <td>City: </td>
+                    <td> <input ng-model="city" type="text" required=t rue></td>
+                  </tr>
 
-              <tr>
-                <td>State: </td> <td> <input ng-model="state" type="text"/></td>
-              </tr>
-              <tr>
-                <td>Zip: </td> <td> <input ng-model="zip" size=5 maxlength=5 type="text"/></td>
-              </tr>
-              <tr>
-                <td>Country: </td> <td> <input ng-model="country" type="text"/></td>
-              </tr>
-               <tr>
-                <td>Email: </td> <td> <input ng-model="email" type="text"/></td>
-              </tr>
-        </table>
-        <section class="styled-button">
-            <button type="submit" class="btn btn-default">Submit</button>
-            &nbsp;
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  <tr>
+                    <td>State: </td>
+                    <td> <input ng-model="state" type="text" /></td>
+                  </tr>
+                  <tr>
+                    <td>Zip: </td>
+                    <td> <input ng-model="zip" size=5 maxlength=5 type="text" /></td>
+                  </tr>
+                  <tr>
+                    <td>Country: </td>
+                    <td> <input ng-model="country" type="text" /></td>
+                  </tr>
+                  <tr>
+                    <td>Email: </td>
+                    <td> <input ng-model="email" type="text" /></td>
+                  </tr>
+                </table>
+                <section class="styled-button">
+                  <button type="submit" class="btn btn-default">Submit</button> &nbsp;
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 
-            <div class="invalid"><p id="regMessage"></p></div>
-        </section>
-    </form>
-  </center>
-</section>
+                  <div class="invalid">
+                    <p id="regMessage"></p>
+                  </div>
+                </section>
+              </form>
+            </center>
+            </section>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

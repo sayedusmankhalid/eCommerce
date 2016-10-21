@@ -111,7 +111,8 @@ ol li
   margin: 0 auto;} 
   
 ul#menu
-{ margin:0;}
+{ margin:0;
+}
 
 ul#menu li
 { padding: 0 0 0 0px;
@@ -435,6 +436,7 @@ ul img {
 
 .modal-body h1{
   color:black;
+<<<<<<< HEAD
   font-family: 'Bree Serif', serif;
 }
 
@@ -443,4 +445,11 @@ ul img {
 }
 .modal-body{
   background-color: slategrey;
+=======
+}
+
+#menu{
+  color:red;
+  font: bold;
+>>>>>>> 9a15ecc08305e4e7feee7470f4a0705e489e5855
 }
