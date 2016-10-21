@@ -36,11 +36,11 @@ def mainIndex():
         
     return render_template('index.html', current='home', loginRequired= session['loginRequired'])
 
-@app.route('/catagory')
+@app.route('/category')
 def ourWork():
     productList= [{'name':'Electronics', 'description':'Best iphone ever created','image':'home_1.jpg'},
                     {'name':'Furniture', 'description':'Best iphone ever created','image':'home_1.jpg'}]
-    return render_template('catagory.html', current='ourWork', productList = productList)
+    return render_template('category.html', current='category', productList = productList)
 
 @app.route('/testimonials')
 def testimonials():
