@@ -427,16 +427,29 @@ ul img {
  
 .modal-title {
   color: black;
+  
 }
 .modal-body{
   color:black;
+  font-family: 'Bree Serif', serif;
 }
 
 .modal-body h1{
   color:black;
+<<<<<<< HEAD
+  font-family: 'Bree Serif', serif;
+}
+
+.modal-content{
+  background-color: silver;
+}
+.modal-body{
+  background-color: slategrey;
+=======
 }
 
 #menu{
   color:red;
   font: bold;
+>>>>>>> 9a15ecc08305e4e7feee7470f4a0705e489e5855
 }
