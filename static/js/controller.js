@@ -18,7 +18,7 @@ Socketpart2.controller('MainPageController', function($scope) {
         socket.on('redirect', function(destination) {
                //var model = document.getElementById('login');
                 var loginLink = document.getElementById('loginLink');
-                window.location.href = destination.link;
+                window.location.href = destination;
                 //console.log(destination.name)
                 //$('#loginText').text(destination.name);
         });
