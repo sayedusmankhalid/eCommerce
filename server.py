@@ -3,7 +3,7 @@ import psycopg2.extras
 import os
 import uuid
 import db
-from flask import Flask, session
+from flask import Flask, redirect, url_for, session
 from flask import Flask,render_template,request
 from flask.ext.socketio import SocketIO,emit
 from flask import json
@@ -35,6 +35,11 @@ def mainIndex():
         un = session['username']
         session['loginRequired'] = False
     return render_template('index.html', current='home', loginRequired= session['loginRequired'], name = un)
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('mainIndex'))
 
 @app.route('/category')
 def ourWork():
@@ -111,6 +116,7 @@ def register(username, firstName, lastName, password, conPassword, address, city
         else:
             db.registerIntoDb(username, firstName, lastName, password, conPassword, address, city,state, zip, country, email)
             emit('redirect',"/", namespace='/eCom')
+
 
     
 # start the server
