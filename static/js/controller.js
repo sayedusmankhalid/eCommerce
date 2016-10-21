@@ -19,9 +19,7 @@ Socketpart2.controller('MainPageController', function($scope) {
                //var model = document.getElementById('login');
                 var loginLink = document.getElementById('loginLink');
                 window.location.href = destination;
-                //console.log(destination.name)
-                //$('#loginText').text(destination.name);
-        });
+       });
         
         socket.on('loginText', function(name) {
            console.log(name); 

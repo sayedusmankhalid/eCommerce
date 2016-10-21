@@ -115,7 +115,7 @@ def register(username, firstName, lastName, password, conPassword, address, city
             emit('regFail', 'Passwords do not match!')
         else:
             db.registerIntoDb(username, firstName, lastName, password, conPassword, address, city,state, zip, country, email)
-            emit('redirect',"/", namespace='/eCom')
+            emit('redirect','/', namespace='/eCom')
 
 
     
