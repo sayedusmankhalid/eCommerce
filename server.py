@@ -32,15 +32,20 @@ def mainIndex():
     session['loginRequired'] = True
     if 'username' in session:
         session['loginRequired'] = False
-
-        
     return render_template('index.html', current='home', loginRequired= session['loginRequired'])
 
 @app.route('/category')
 def ourWork():
-    productList= [{'name':'Electronics', 'description':'Best iphone ever created','image':'home_1.jpg'},
-                    {'name':'Furniture', 'description':'Best iphone ever created','image':'home_1.jpg'}]
-    return render_template('category.html', current='category', productList = productList)
+    global name
+    global passed
+    if passed:
+        session['username'] = name
+        name = ''
+        passed = False
+    session['loginRequired'] = True
+    if 'username' in session:
+        session['loginRequired'] = False
+    return render_template('category.html', current='category', loginRequired= session['loginRequired'])
 
 @app.route('/testimonials')
 def testimonials():
