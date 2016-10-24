@@ -32,17 +32,10 @@ CREATE TABLE products (
   FOREIGN KEY (seller_name) REFERENCES users(username)
 );
 
-CREATE TABLE cart (
-  username text NOT NULL,
-  product_id int NOT NULL,
-  quantity int NOT NULL,
-  PRIMARY KEY(username, product_id),
-  FOREIGN KEY(username) REFERENCES users(username),
-  FOREIGN KEY(product_id) REFERENCES products(id)
-);
-
 INSERT INTO users (username,password,firstName,lastName,Address,city, state,zip,country,email) values
-('usman',crypt('usman',gen_salt('bf')),'Usman','Khalid','8 Woodland Ter','Fredericksburg','VA','22401','USA','test@gmail.com');
+('usman',crypt('usman',gen_salt('bf')),'Usman','Khalid','8 Woodland Ter','Fredericksburg','VA','22401','USA','test1@gmail.com');
+INSERT INTO users (username,password,firstName,lastName,Address,city, state,zip,country,email) values
+('koy',crypt('koy',gen_salt('bf')),'Koy','Voss','14 Whitestone Dr','Stafford','VA','22556','USA','test2@gmail.com');
 
 insert into products(name, description, price, quantity, date_posted, seller_name, catagory_name)values('iphone','best iphone ever',110,3,'2016-01-13','usman','electronics');
 
