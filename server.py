@@ -136,7 +136,16 @@ def register(username, firstName, lastName, password, conPassword, address, city
             db.registerIntoDb(username, firstName, lastName, password, conPassword, address, city,state, zip, country, email)
             emit('redirect','/', namespace='/eCom')
 
-
+#######################################################Seller Info #################################
+@socketio.on('sellerInfo', namespace='/eCom')
+def sellerInfo(sellername):
+    information = db.getSellerInfo(sellername)
+    print information
+    emit ('returnSellerInfo',information)
+    
+    
+    
+    
     
 # start the server
 if __name__ == '__main__':

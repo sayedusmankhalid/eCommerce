@@ -40,7 +40,7 @@
                 <td>${{p.price}}</td>
                 <td>{{p.quantity}}</td>
                 <td>{{p.date_posted}}</td>
-                <td><a href="#" data-toggle="modal" id="sellername" data-target="#seller">{{p.seller_name}}</a></td>
+                <td><a href="#" ng-click=sellerInfo('{{p.seller_name}}') data-toggle="modal" id="sellername" data-target="#seller">{{p.seller_name}}</a></td>
             </tr>
             {% endfor %}
             <!--/First row-->
@@ -58,7 +58,9 @@
           <h4 class="modal-title">Seller Information</h4>
         </div>
         <div class="modal-body">
-          <p></p>
+          <strong id=sellerName> </strong> </br>
+          <strong id =address> </strong> </br>
+          <strong id =email> </strong> </br>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

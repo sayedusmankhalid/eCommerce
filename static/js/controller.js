@@ -4,6 +4,7 @@ Socketpart2.controller('MainPageController', function($scope) {
         var socket = io.connect('https://' + document.domain + ':' + location.port + '/eCom');
         
         $scope.loginFailed = "" 
+        $scope.sellerInfoList = [];
 
         socket.on('connect', function() {
                 console.log('connected to the controller')
@@ -45,7 +46,16 @@ Socketpart2.controller('MainPageController', function($scope) {
 		$('#regMessage').text(msg);
         });
         /////////////////////seller information/////////////////////////////////
-        $("#sellername").click(function() {
-            console.log($('#sellername').text());
+        $scope.sellerInfo = function sellerInfo(name) {
+            //console.log(name);
+            socket.emit('sellerInfo', name);
+            //console.log($('#sellername').text());
+        };
+        
+        socket.on('returnSellerInfo', function(information) {
+            $('#sellerName').text("Full Name: " + information.firstname + " " + information.lastname);
+            $('#address').text("Address: " + information.address + ", " + information.city + " " + information.state + " " + information.zip + " "+ information.country  )
+            $('#email').text("Email: " + information.email)
+           console.log(information.firstname); 
         });
 });
