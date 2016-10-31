@@ -15,6 +15,7 @@ Socketpart2.controller('MainPageController', function($scope) {
                 socket.emit('login', user, password);
         };
 
+
         socket.on('redirect', function(destination) {
                //var model = document.getElementById('login');
                 var loginLink = document.getElementById('loginLink');
@@ -42,5 +43,9 @@ Socketpart2.controller('MainPageController', function($scope) {
         socket.on('regFail', function(msg) {
 		document.getElementById('regMessage').textContent = msg;
 		$('#regMessage').text(msg);
+        });
+        /////////////////////seller information/////////////////////////////////
+        $("#sellername").click(function() {
+            console.log($('#sellername').text());
         });
 });

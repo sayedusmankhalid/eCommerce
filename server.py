@@ -56,6 +56,23 @@ def ourWork():
         session['loginRequired'] = False
     return render_template('category.html', current='category', loginRequired= session['loginRequired'], name = un)
 
+def loginCheck():
+    global name
+    global passed
+    un=""
+    new_dict = {'username' : '', 'loginRequired' : False}
+    if passed:
+        session['username'] = name
+        name = ''
+        passed = False
+    session['loginRequired'] = True
+    if 'username' in session:
+        un = session['username']
+        new_dict['username'] = un
+        session['loginRequired'] = False
+    new_dict['loginRequired'] = session['loginRequired']
+    return new_dict
+
 @app.route('/testimonials')
 def testimonials():
     return render_template('testimonials.html',current='testimonials', title=title)
@@ -70,15 +87,17 @@ def contact():
 
 @app.route('/electronics')
 def electronics():
+    dict = loginCheck()
     queryFetch = db.productsList('electronics')
     print queryFetch
-    return render_template("product.html", queryFetch=queryFetch)
+    return render_template("product.html", queryFetch=queryFetch, electronics = True, loginRequired = dict['loginRequired'], name = dict['username'])
     
 @app.route('/furniture')
 def furniture():
+    dict = loginCheck()
     queryFetch = db.productsList('furniture')
     print queryFetch
-    return render_template("product.html", queryFetch=queryFetch)
+    return render_template("product.html", queryFetch=queryFetch, furniture = True, loginRequired = dict['loginRequired'], name = dict['username'])
     
 ##########################################SocketIO STUFF ###########################################
 ###################Login################
@@ -97,7 +116,7 @@ def login(username, password):
         name = username
         print(session['loginRequired'])
         
-        emit('redirect',{'link':'/', 'name':name}, namespace='/eCom')
+        emit('redirect','/', namespace='/eCom')
         #emit('loginText', name)
         print 'how many times we are coming in else of loginPageValidation---------------------------------'
             #return render_template('index.html')

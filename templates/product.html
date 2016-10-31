@@ -26,7 +26,12 @@
             {% for p in queryFetch %}
             <tr>
                 <th scope="row">
-                    <img src="http://mdbootstrap.com/images/ecommerce/products/shoes.jpg" alt="" class="img-fluid">
+                    {% if furniture %}
+                        <img src="images/furniture_category.jpg" alt="" class="img-fluid" width="200" height="150">
+                    {% endif %}
+                    {% if electronics %}
+                        <img src="images/home_1.jpg" alt="" class="img-fluid" width="200" height="150">
+                    {% endif %}
                 </th>
                 <td>
                     <h5><strong>{{p.name}}</strong></h5>
@@ -35,16 +40,34 @@
                 <td>${{p.price}}</td>
                 <td>{{p.quantity}}</td>
                 <td>{{p.date_posted}}</td>
-                <td>{{p.seller_name}}</td>
-
+                <td><a href="#" data-toggle="modal" id="sellername" data-target="#seller">{{p.seller_name}}</a></td>
             </tr>
             {% endfor %}
             <!--/First row-->
-
-
         </tbody>
         <!--/Table body-->
     </table>
+      <!-- Modal -->
+  
+  <div class="modal fade" id="seller" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Seller Information</h4>
+        </div>
+        <div class="modal-body">
+          <p></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
 </div>
 <!--/Shopping Cart table-->
 
