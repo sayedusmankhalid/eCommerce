@@ -112,6 +112,7 @@ ol li
   
 ul#menu
 { margin:0;
+padding: 10px 0 0 190px;;
 }
 
 ul#menu li
@@ -127,7 +128,7 @@ ul#menu li a
   height: 24px;
   margin: 10px 0 0 20px;
   text-shadow: 0px -1px 0px #000;
-  padding: 6px 10px 0 10px;
+  padding: 6px 10px 0 0px;
   background: transparent; 
   border-radius: 7px 7px 7px 7px;
   -moz-border-radius: 7px 7px 7px 7px;
@@ -446,7 +447,9 @@ ul img {
   background-color: slategrey;
 }
 
-#menu{
-  color:red;
-  font: bold;
+
+#siteName{
+  color:#ffa500;
+  font-family: fantasy;
+  font-size: xx-large;
 }

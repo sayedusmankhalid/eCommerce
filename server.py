@@ -27,7 +27,7 @@ def mainIndex():
     un = ""
     if passed:
         session['username'] = name
-        name = ''
+        name = ""
         passed = False
     
     session['loginRequired'] = True
@@ -48,7 +48,7 @@ def ourWork():
     un=""
     if passed:
         session['username'] = name
-        name = ''
+        name = ""
         passed = False
     session['loginRequired'] = True
     if 'username' in session:
@@ -110,12 +110,14 @@ def login(username, password):
         emit('loginFailed','Invalid Username', namespace='/eCom')
         print 'how many times we are coming in if of loginPageValidation---------------------------------'
     else:
-        #session['username'] = username
+        session['username_redirect'] = username
         #session['loginRequired'] = False
         passed = True
         name = username
         print(session['loginRequired'])
         
+
+
         emit('redirect','/', namespace='/eCom')
         #emit('loginText', name)
         print 'how many times we are coming in else of loginPageValidation---------------------------------'
