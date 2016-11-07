@@ -19,7 +19,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE products (
-  id serial NOT NULL,
+  id varchar(100) NOT NULL,
   name text NOT NULL,
   description text NOT NULL,
   price decimal NOT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE products (
 
 CREATE TABLE sellerproducts (
   username varchar(12) NOT NULL,
-  product_id int NOT NULL,
+  product_id text NOT NULL,
   PRIMARY KEY(username, product_id),
   FOREIGN KEY(username) REFERENCES users(username),
   FOREIGN KEY(product_id) REFERENCES products(id)
@@ -45,9 +45,14 @@ INSERT INTO users (username,password,firstName,lastName,Address,city, state,zip,
 INSERT INTO users (username,password,firstName,lastName,Address,city, state,zip,country,email) values
 ('koy',crypt('koy',gen_salt('bf')),'Koy','Voss','14 Whitestone Dr','Stafford','VA','22556','USA','test2@gmail.com');
 
-insert into products(name, description, price, quantity, date_posted, seller_name, catagory_name)values('iphone','best iphone ever',110,3,'2016-01-13','usman','electronics');
+insert into products(id,name, description, price, quantity, date_posted, seller_name, catagory_name)values('1','iphone','best iphone ever',110,3,'2016-01-13','usman','electronics');
+insert into products(id, name, description, price, quantity, date_posted, seller_name, catagory_name)values('2','iphone','best iphone ever',110,3,'2016-01-13','koy','electronics');
 
-INSERT INTO sellerproducts(username, product_id) VALUES ('koy', 1), ('usman', 1), ('koy', 2);
+INSERT INTO sellerproducts(username, product_id) VALUES ('koy', 2), ('usman', 1);
+
+Grant ALL on users to usman;
+Grant ALL on products to usman;
+Grant All on sellerproducts to usman;
 
 --select distinct products.name from products Join  users on  products.id  IN(Select product_id From sellerproducts where username='koy' );--
 --select distinct products.name, products.price, products.quantity, products.date_posted from products Join  users on  products.id  IN(Select product_id From sellerproducts where username='usman' );--

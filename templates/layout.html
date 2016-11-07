@@ -62,7 +62,7 @@
           <li {%if current=="home" %} class="current" {% endif %}><a href="/">Home</a></li>
           <li {%if current=="category" %} class="current" {% endif %}><a href="\category">Categories</a></li>
           {% if not loginRequired %}
-            <li {%if current=="postproduct" %} class="current" {% endif %}><a href="#">Post Product</a></li>
+            <li {%if current=="postproduct" %} class="current" {% endif %}><a a href="#" data-toggle="modal" data-target="#postProduct">Post Product</a></li>
             <li {%if current=="myProducts" %} class="current" {% endif %}><a href="/myProducts">My Product</a></li>
           {% endif %}
         </ul>
@@ -143,31 +143,31 @@
                 <table class="styled-input">
                   <tr>
                     <td>User Name: </td>
-                    <td> <input ng-model="userName" type="text" required=t rue></td>
+                    <td> <input ng-model="userName" type="text" required=true></td>
                   </tr>
                   <tr>
                     <td>First Name: </td>
-                    <td> <input ng-model="firstName" type="text" required=t rue></td>
+                    <td> <input ng-model="firstName" type="text" required=true></td>
                   </tr>
                   <tr>
                     <td>Last Name: </td>
-                    <td> <input ng-model="lastName" type="text" required=t rue></td>
+                    <td> <input ng-model="lastName" type="text" required=true></td>
                   </tr>
                   <tr>
                     <td>Password: </td>
-                    <td> <input ng-model="regPassword" type="password" required=t rue></td>
+                    <td> <input ng-model="regPassword" type="password" required=true></td>
                   </tr>
                   <tr>
                     <td>Confirm Password: </td>
-                    <td> <input ng-model="conPassword" type="password" required=t rue></td>
+                    <td> <input ng-model="conPassword" type="password" required=true></td>
                   </tr>
                   <tr>
                     <td>Address: </td>
-                    <td> <input ng-model="address" type="text" required=t rue></td>
+                    <td> <input ng-model="address" type="text" required=true></td>
                   </tr>
                   <tr>
                     <td>City: </td>
-                    <td> <input ng-model="city" type="text" required=t rue></td>
+                    <td> <input ng-model="city" type="text" required=true></td>
                   </tr>
 
                   <tr>
@@ -186,6 +186,69 @@
                     <td>Email: </td>
                     <td> <input ng-model="email" type="text" /></td>
                   </tr>
+                </table>
+                <section class="styled-button">
+                  <button type="submit" class="btn btn-default">Submit</button> &nbsp;
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+
+                  <div class="invalid">
+                    <p id="regMessage"></p>
+                  </div>
+                </section>
+              </form>
+            </center>
+            </section>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-------------------------------------------------------model close--------------------------------------->
+    
+    
+    <!--------------------------------------------------Model for My Product-------------------------------->
+    <div class="modal fade" id="postProduct" role="dialog">
+      <div class="modal-dialog modal-md">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Post Product</h4>
+          </div>
+          <div class="modal-body">
+            <center>
+              <h1 id="styled-title">Enter Product Info</h1>
+              <form ng-submit="postProduct()">
+                <table class="styled-input">
+                  <tr>
+                    <td>Product Name: </td>
+                    <td> <input ng-model="productName" type="text" required=true></td>
+                  </tr>
+                  <tr>
+                    <td>Price: </td>
+                    <td> <input ng-model="price" type="text" required=true></td>
+                  </tr>
+                  <tr>
+                    <td>Quantity: </td>
+                    <td> <input ng-model="quantity" type="text" required=true></td>
+                  </tr>
+                  <tr>
+                    <td>Categories: </td>
+                    <td> <select id = category_name ng-model = "category">
+                            <option   value = "electronics">Electronics</option>
+                             <option  value = "furniture">Furniture </option>
+                        </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Description: </td>
+                    <td> <input ng-model="desc" type="text" required=true></td>
+                  </tr>
+                 
                 </table>
                 <section class="styled-button">
                   <button type="submit" class="btn btn-default">Submit</button> &nbsp;

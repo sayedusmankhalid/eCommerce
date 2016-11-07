@@ -152,6 +152,16 @@ def sellerInfo(sellername):
     print information
     emit ('returnSellerInfo',information)
     
+################################################Post Product #########################################
+@socketio.on('postProduct', namespace='/eCom')
+def postProduct(productName,price,quantity,category,desc, today):
+    print (productName,price,quantity,category,desc, today)
+    session['id'] = uuid.uuid1()
+    dict = loginCheck()
+    id = str(session['id'])
+    db.insertProduct(id,dict['username'],productName,price,quantity,category,desc, today)
+    
+    emit('redirect','/', namespace='/eCom')
     
     
     

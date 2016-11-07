@@ -77,5 +77,27 @@ def getMyProducts(username):
     cur.execute(query,[username])
     myProducts = cur.fetchall()
     return myProducts
+
+########################### Post Product ##################################
+def insertProduct(id,username, productName,price,quantity,category,desc, today):
+    conn=db_connect()
+    cur =conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    try:
+        queryInsert = "insert into products (id,name,description,price,quantity,date_posted,seller_name,catagory_name)values(%s,%s,%s,%s,%s,%s,%s,%s);"
+        cur.execute(queryInsert,[id,productName,desc,price,quantity,today,username,category])
+    except:
+        print("ERROR inserting into products")
+
+        conn.rollback()
+    conn.commit()
+    
+    try:
+        queryInsert = "insert into sellerproducts (username,product_id) values (%s,%s);"
+        cur.execute(queryInsert,[username,id])
+    except:
+        print("ERROR inserting into sellerproducts")
+
+        conn.rollback()
+    conn.commit()
     
     
