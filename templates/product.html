@@ -13,7 +13,11 @@
                 <th>Price</th>
                 <th>QTY</th>
                 <th>Date Posted</th>
+                {%  if not myPro %}
                 <th>Seller Name</th>
+                {% else %}
+                <th>Category</th>
+                {%  endif %}
                 <th></th>
             </tr>
         </thead>
@@ -40,6 +44,9 @@
                 <td>${{p.price}}</td>
                 <td>{{p.quantity}}</td>
                 <td>{{p.date_posted}}</td>
+                {% if myPro %}
+                <td>{{p.catagory_name}}</td>
+                {% endif %}
                 <td><a href="#" ng-click=sellerInfo('{{p.seller_name}}') data-toggle="modal" id="sellername" data-target="#seller">{{p.seller_name}}</a></td>
             </tr>
             {% endfor %}

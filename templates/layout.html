@@ -61,7 +61,10 @@
         <ul class="nav navbar-nav" id="menu">
           <li {%if current=="home" %} class="current" {% endif %}><a href="/">Home</a></li>
           <li {%if current=="category" %} class="current" {% endif %}><a href="\category">Categories</a></li>
-          <li><a href="#">Post Product</a></li>
+          {% if not loginRequired %}
+            <li {%if current=="postproduct" %} class="current" {% endif %}><a href="#">Post Product</a></li>
+            <li {%if current=="myProducts" %} class="current" {% endif %}><a href="/myProducts">My Product</a></li>
+          {% endif %}
         </ul>
         <ul class="nav navbar-nav navbar-right">
           {% if loginRequired %}

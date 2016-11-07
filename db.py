@@ -69,4 +69,13 @@ def getSellerInfo(sellername):
         
     return temp
     
+#################### My Product Info #####################################
+def getMyProducts(username):
+    conn=db_connect()
+    cur=conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    query = "SELECT DISTINCT products.name, products.price, products.quantity, products.date_posted, products.catagory_name FROM products JOIN  users ON  products.id  IN(SELECT product_id FROM sellerproducts WHERE username=%s)"
+    cur.execute(query,[username])
+    myProducts = cur.fetchall()
+    return myProducts
+    
     

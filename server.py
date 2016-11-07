@@ -81,6 +81,13 @@ def testimonials():
 def projects():
     return render_template('projects.html',current='projects', title=title)
 
+@app.route('/myProducts')
+def myproducts():
+    dict = loginCheck()
+    username = dict['username']
+    queryFetch = db.getMyProducts(username)
+    return render_template("product.html", queryFetch=queryFetch, current='myProducts', loginRequired = dict['loginRequired'], name = dict['username'], myPro = True)
+
 @app.route('/contact')
 def contact():
     return render_template("contact.html",current='contact', title=title)
