@@ -96,15 +96,28 @@ def contact():
 def electronics():
     dict = loginCheck()
     queryFetch = db.productsList('electronics')
-    print queryFetch
     return render_template("product.html", queryFetch=queryFetch, electronics = True, loginRequired = dict['loginRequired'], name = dict['username'])
     
 @app.route('/furniture')
 def furniture():
     dict = loginCheck()
     queryFetch = db.productsList('furniture')
-    print queryFetch
     return render_template("product.html", queryFetch=queryFetch, furniture = True, loginRequired = dict['loginRequired'], name = dict['username'])
+    
+@app.route('/search', methods = ['POST'])
+def search():
+    if request.method == 'POST':
+        cat = request.form['cat']
+        input = request.form['input']
+
+    dict = loginCheck()
+    queryFetch = db.searchProducts(cat,input)
+
+    if cat == 'furniture':
+        return render_template("product.html", queryFetch=queryFetch, furniture = True, loginRequired = dict['loginRequired'], name = dict['username'])
+    if cat == 'electronics':
+        return render_template("product.html", queryFetch=queryFetch, electronics = True, loginRequired = dict['loginRequired'], name = dict['username'])
+    
     
 ##########################################SocketIO STUFF ###########################################
 ###################Login################
@@ -115,20 +128,11 @@ def login(username, password):
     loginQueryFetch = db.login(username, password)
     if loginQueryFetch is None:
         emit('loginFailed','Invalid Username', namespace='/eCom')
-        print 'how many times we are coming in if of loginPageValidation---------------------------------'
     else:
         session['username_redirect'] = username
-        #session['loginRequired'] = False
         passed = True
         name = username
-        print(session['loginRequired'])
-        
-
-
         emit('redirect','/', namespace='/eCom')
-        #emit('loginText', name)
-        print 'how many times we are coming in else of loginPageValidation---------------------------------'
-            #return render_template('index.html')
 
 ################register#################    
 @socketio.on('register', namespace='/eCom')
@@ -136,7 +140,6 @@ def register(username, firstName, lastName, password, conPassword, address, city
     
     userCheck = db.checkUserNameExist(username)
     if len(userCheck) > 0:
-        print('user name is already taken')
         emit('regFail', 'Username already taken!')
     else:
         if password != conPassword:
@@ -149,13 +152,11 @@ def register(username, firstName, lastName, password, conPassword, address, city
 @socketio.on('sellerInfo', namespace='/eCom')
 def sellerInfo(sellername):
     information = db.getSellerInfo(sellername)
-    print information
     emit ('returnSellerInfo',information)
     
 ################################################Post Product #########################################
 @socketio.on('postProduct', namespace='/eCom')
 def postProduct(productName,price,quantity,category,desc, today):
-    print (productName,price,quantity,category,desc, today)
     session['id'] = uuid.uuid1()
     dict = loginCheck()
     id = str(session['id'])
@@ -163,7 +164,7 @@ def postProduct(productName,price,quantity,category,desc, today):
     
     emit('redirect','/', namespace='/eCom')
     
-    
+
     
     
 # start the server

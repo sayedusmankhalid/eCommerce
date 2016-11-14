@@ -100,4 +100,12 @@ def insertProduct(id,username, productName,price,quantity,category,desc, today):
         conn.rollback()
     conn.commit()
     
-    
+#########################################Search Product ##################################
+def searchProducts(cat,inp):
+    inp = "%"+inp+"%"
+    conn=db_connect()
+    cur=conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    query = "select * from products where (name LIKE %s or seller_name LIKE %s) and catagory_name = %s;"
+    cur.execute(query,[inp,inp,cat])
+    listProducts = cur.fetchall()
+    return listProducts

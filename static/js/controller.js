@@ -18,24 +18,17 @@ Socketpart2.controller('MainPageController', function($scope) {
 
 
     socket.on('redirect', function(destination) {
-        //var model = document.getElementById('login');
         var loginLink = document.getElementById('loginLink');
         window.location.href = destination;
     });
 
-    socket.on('loginText', function(name) {
-        console.log(name);
-    });
-
     socket.on('loginFailed', function(msg) {
-        //document.getElementById('message').textContent = msg;
         $('#message').text(msg);
 
 
     });
     ////////////////////registration///////////////////////////////////////
     $scope.register = function register() {
-        console.log('inside the register controller');
         socket.emit('register', $scope.userName, $scope.firstName, $scope.lastName,
             $scope.regPassword, $scope.conPassword, $scope.address, $scope.city,
             $scope.state, $scope.zip, $scope.country, $scope.email);
@@ -47,16 +40,16 @@ Socketpart2.controller('MainPageController', function($scope) {
     });
     /////////////////////seller information/////////////////////////////////
     $scope.sellerInfo = function sellerInfo(name) {
-        //console.log(name);
+
         socket.emit('sellerInfo', name);
-        //console.log($('#sellername').text());
+
     };
 
     socket.on('returnSellerInfo', function(information) {
         $('#sellerName').text("Full Name: " + information.firstname + " " + information.lastname);
         $('#address').text("Address: " + information.address + ", " + information.city + " " + information.state + " " + information.zip + " " + information.country)
         $('#email').text("Email: " + information.email)
-        console.log(information.firstname);
+ 
     });
     ///////////////////////////// Post Product ////////////////////////////
     $scope.postProduct = function postProduct() {
@@ -74,9 +67,18 @@ Socketpart2.controller('MainPageController', function($scope) {
         }
 
         today = yyyy + '-' + mm + '-' + dd;
-        console.log(today);
-        console.log($scope.productName, $scope.price, $scope.quantity, $scope.category, $scope.desc)
+
         socket.emit('postProduct', $scope.productName, $scope.price, $scope.quantity, $scope.category, $scope.desc, today )
 
     }
+    
+//////////////////////////////////Searh Product//////////////////////////////
+$scope.searchProduct = function searchProduct() {
+    
+    var searchInput = $('#searchInput').val();
+    var category =$('#cat').text();
+    socket.emit('searchProduct', searchInput, category);
+};
+    
+    
 });

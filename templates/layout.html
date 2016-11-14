@@ -230,11 +230,11 @@
                   </tr>
                   <tr>
                     <td>Price: </td>
-                    <td> <input ng-model="price" type="text" required=true></td>
+                    <td> <input ng-model="price" type="number" min = "0" step = ".01" value ="0.00" style = "width: 5em" required=true></td>
                   </tr>
                   <tr>
                     <td>Quantity: </td>
-                    <td> <input ng-model="quantity" type="text" required=true></td>
+                    <td> <input ng-model="quantity" type="number" min ="1" style = "width: 5em" required=true></td>
                   </tr>
                   <tr>
                     <td>Categories: </td>
@@ -247,6 +247,7 @@
                   <tr>
                     <td>Description: </td>
                     <td> <input ng-model="desc" type="text" required=true></td>
+          
                   </tr>
                  
                 </table>

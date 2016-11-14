@@ -453,3 +453,29 @@ ul img {
   font-family: fantasy;
   font-size: xx-large;
 }
+
+/*.navbar{
+  position: fixed;
+  width: 100%;
+  z-index: 1000000;
+}*/
+
+#imaginary_container{
+    margin-top:20%; /* Don't copy this */
+}
+.stylish-input-group .input-group-addon{
+    background:#337ab7 !important; 
+    line-height: 22px;
+}
+.stylish-input-group .form-control{
+	border-right:0; 
+	box-shadow:0 0 0; 
+	border-color:#ccc;
+}
+.stylish-input-group button{
+    border:0;
+    background:transparent;
+}
+.row{
+  margin-top: -80px;
+}

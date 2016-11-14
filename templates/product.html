@@ -1,61 +1,87 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} {% block content %}
+{% if not myPro %}
 
-{% block content %}
+  <form method = "post" action = "/search">
+    {% if furniture %}
+    <input id = cat hidden = true name = "cat" value = "furniture">
+    {% endif %}
+    {% if electronics %}
+    <input id = cat hidden = true name = "cat" value = "electronics">
+    {% endif %}
 
-<!--Shopping Cart table-->
+  	<div class="row">
+          <div class="col-sm-6 col-sm-offset-3">
+              <div id="imaginary_container"> 
+                  <div class="input-group stylish-input-group">
+                      <input id= searchInput type="text" class="form-control" name= "input" placeholder="Search" >
+                      <span class="input-group-addon">
+                          <button type="submit">
+                              <span class="glyphicon glyphicon-search"></span>
+                          </button>  
+                      </span>
+                  </div>
+              </div>
+          </div>
+  	</div>
+	</from>
+
+{% endif %}
+
 <div class="table-responsive">
-    <table class="table product-table">
-        <!--Table head-->
-        <thead>
-            <tr>
-                <th></th>
-                <th>Product</th>
-                <th>Price</th>
-                <th>QTY</th>
-                <th>Date Posted</th>
-                {%  if not myPro %}
-                <th>Seller Name</th>
-                {% else %}
-                <th>Category</th>
-                {%  endif %}
-                <th></th>
-            </tr>
-        </thead>
-        <!--/Table head-->
+  <table class="table product-table">
+    <!--Table head-->
+    <thead>
+      <tr>
+        <th></th>
+        <th>Product</th>
+        <th>Price</th>
+        <th>QTY</th>
+        <th>Date Posted</th>
+        {% if not myPro %}
+        <th>Seller Name</th>
+        {% else %}
+        <th>Category</th>
+        {% endif %}
+        <th></th>
+      </tr>
+    </thead>
+    <!--/Table head-->
 
-        <!--Table body-->
-        <tbody>
-                
-            <!--First row-->
-            {% for p in queryFetch %}
-            <tr>
-                <th scope="row">
-                    {% if furniture %}
-                        <img src="images/furniture_category.jpg" alt="" class="img-fluid" width="200" height="150">
-                    {% endif %}
-                    {% if electronics %}
-                        <img src="images/home_1.jpg" alt="" class="img-fluid" width="200" height="150">
-                    {% endif %}
-                </th>
-                <td>
-                    <h5><strong>{{p.name}}</strong></h5>
-                    <p class="text-muted">{{p.description}}</p>
-                </td>
-                <td>${{p.price}}</td>
-                <td>{{p.quantity}}</td>
-                <td>{{p.date_posted}}</td>
-                {% if myPro %}
-                <td>{{p.catagory_name}}</td>
-                {% endif %}
-                <td><a href="#" ng-click=sellerInfo('{{p.seller_name}}') data-toggle="modal" id="sellername" data-target="#seller">{{p.seller_name}}</a></td>
-            </tr>
-            {% endfor %}
-            <!--/First row-->
-        </tbody>
-        <!--/Table body-->
-    </table>
-      <!-- Modal -->
-  
+    <!--Table body-->
+    <tbody>
+
+      <!--First row-->
+      {% for p in queryFetch %}
+      <tr>
+        <th scope="row">
+          {% if furniture %}
+          <img src="images/furniture_category.jpg" alt="" class="img-fluid" width="200" height="150"> 
+          <p id = cat hidden = true>furniture</p>
+          {% endif %} 
+          {% if electronics %}
+          <p id = cat hidden = true>electronics</p>
+          <img src="images/home_1.jpg" alt="" class="img-fluid" width="200" height="150"> 
+          {% endif %}
+        </th>
+        <td>
+          <h5><strong>{{p.name}}</strong></h5>
+          <p class="text-muted">{{p.description}}</p>
+        </td>
+        <td>${{p.price}}</td>
+        <td>{{p.quantity}}</td>
+        <td>{{p.date_posted}}</td>
+        {% if myPro %}
+        <td>{{p.catagory_name}}</td>
+        {% endif %}
+        <td><a href="#" ng-click=sellerInfo('{{p.seller_name}}') data-toggle="modal" id="sellername" data-target="#seller">{{p.seller_name}}</a></td>
+      </tr>
+      {% endfor %}
+      <!--/First row-->
+    </tbody>
+    <!--/Table body-->
+  </table>
+  <!-- Modal -->
+
   <div class="modal fade" id="seller" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
@@ -66,19 +92,19 @@
         </div>
         <div class="modal-body">
           <strong id=sellerName> </strong> </br>
-          <strong id =address> </strong> </br>
-          <strong id =email> </strong> </br>
+          <strong id=address> </strong> </br>
+          <strong id=email> </strong> </br>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
-      
+
     </div>
   </div>
 
 </div>
-<!--/Shopping Cart table-->
+
 
 
 {% endblock %}
