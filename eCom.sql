@@ -54,8 +54,3 @@ Grant ALL on users to usman;
 Grant ALL on products to usman;
 Grant All on sellerproducts to usman;
 
---select distinct products.name from products Join  users on  products.id  IN(Select product_id From sellerproducts where username='koy' );--
---select distinct products.name, products.price, products.quantity, products.date_posted from products Join  users on  products.id  IN(Select product_id From sellerproducts where username='usman' );--
-
---select users.username, products.name, products.description from users join products on products.seller_name ='usman';--
---select products.name from cart join products on cart.product_id = products.id; --
